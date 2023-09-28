@@ -1,0 +1,33 @@
+---
+- name: install apache
+  hosts: webservers
+  user: opc 
+  become: true
+  tasks: 
+    - name: install httpd pkg
+      ansible.builtin.yum:
+       name: httpd
+       state: latest
+      notify: 
+        - restart apache
+    - name: copy index page
+      ansible.builtin.copy:
+       src: index.html
+       dest: /var/www/html   
+    - name: add firewall rule
+      ansible.builtin.firewalld:
+        service: http
+        permanent: true
+        immediate: true
+        state: enabled
+    - name: restart apache
+      service:
+        name: httpd
+        state: started
+        enabled: true
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+

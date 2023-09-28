@@ -1,0 +1,9 @@
+plugin: oracle.oci.oci
+
+regions:
+- us-ashburn-1
+enable_parallel_processing: yes
+
+compartments:
+- compartment_name:99212149-lab.user12
+  parent_compartment_ocid: ocid1.compartment.oc1..aaaaaaaagcahw73vhg3raurulbih663qkyfsggxgrd36a4xfokh5zlerc4lq

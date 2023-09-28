@@ -1,0 +1,12 @@
+---
+- name: Create a VCN
+  hosts: localhost
+  tasks:
+  - name: Creating a simple VCN
+    oci_vcn:  
+      cidr_block: '10.0.0.0/16'
+      compartment_id: ocid1.compartment.oc1..aaaaaaaagcahw73vhg3raurulbih663qkyfsggxgrd36a4xfokh5zlerc4lq
+      display_name: playbookvcn
+      dns_label: playbookvcn
+    register: result
+  - debug: msg="{{ result }}"
